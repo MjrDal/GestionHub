@@ -1,0 +1,72 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Clients {
+  id                        String          @id @default(cuid())
+  number                    String
+  companyName               String
+  companyDescription        String
+  contactName               String
+  contactEmail              String
+  contactPhoneNumber        String
+  cahierDesCharges          Cdc[]
+  
+}
+
+
+model Cdc {
+  id                        String          @id @default(cuid())
+  number                    String
+  title                     String
+  objectif                  String
+  publicVise                String
+  personas                  String
+  fonctionnalites           String
+  structure                 String
+  charteGraphique           String
+  maquette                  String
+  technologie               String
+  hebergement               String
+  maintenance               String
+  evolution                 String
+  budget                    String
+  delais                    String
+  client                    Clients[]
+}
+
+model Devis {
+  id                        String          @id @default(cuid())
+  number                    String
+  title                     String
+  objectif                  String
+  publicVise                String
+  personas                  String
+  fonctionnalites           String
+  structure                 String
+  charteGraphique           String
+  maquette                  String
+  technologie               String
+  hebergement               String
+  maintenance               String
+  evolution                 String
+  budget                    String
+  delais                    String
+}
+
+model Affaires {
+  id                        String          @id @default(cuid())
+  number                    String
+  title                     String
+}
