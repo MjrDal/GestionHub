@@ -13,60 +13,77 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Clients {
-  id                        String          @id @default(cuid())
-  number                    String
-  companyName               String
-  companyDescription        String
-  contactName               String
-  contactEmail              String
-  contactPhoneNumber        String
-  cahierDesCharges          Cdc[]
-  
+enum StatusDevis {
+  Accepter
+  Annuler
+  EnCours
 }
 
+enum TacheEtat {
+  OK
+  NOK
+}
 
-model Cdc {
+model Clients {
   id                        String          @id @default(cuid())
-  number                    String
-  title                     String
-  objectif                  String
-  publicVise                String
-  personas                  String
-  fonctionnalites           String
-  structure                 String
-  charteGraphique           String
-  maquette                  String
-  technologie               String
-  hebergement               String
-  maintenance               String
-  evolution                 String
-  budget                    String
-  delais                    String
+  code                      String
+  companyName               String
+  companyDescription        String
+  logo                      String?
+  adresse                   String
+  postal                    String
+  city                      String
+  pays                      String
+  telephone                 String
+  email                     String
+  date                      DateTime
+  contacts                  Contacts[]
+  Devis                     Devis[]
+  projets                   Projects[]
+  factures                  Factures[]
+  taches                    Taches[]
+}
+
+model Contacts {
+  id                        String        @id @default(cuid()) 
+  firstname                 String
+  lastname                  String
+  role                      String
+  email                     String
+  telephone                 String?
   client                    Clients[]
 }
 
 model Devis {
-  id                        String          @id @default(cuid())
+  id                        String        @id @default(cuid()) 
   number                    String
+  indice                    String
   title                     String
-  objectif                  String
-  publicVise                String
-  personas                  String
-  fonctionnalites           String
-  structure                 String
-  charteGraphique           String
-  maquette                  String
-  technologie               String
-  hebergement               String
-  maintenance               String
-  evolution                 String
-  budget                    String
-  delais                    String
+  designation               String
+  client                    Clients[]
+  status                    StatusDevis     @default(EnCours)
 }
 
-model Affaires {
-  id                        String          @id @default(cuid())
+model Projects {
+  id                        String        @id @default(cuid())  
+  name                      String
+  designation               String
+  client                    Clients[]
+}
+
+model Factures {
+  id                        String        @id @default(cuid())
   number                    String
+  indice                    String
   title                     String
+  designation               String
+  client                    Clients[]
+}
+
+model Taches {
+  id                        String        @id @default(cuid())
+  title                     String
+  designation               String
+  client                    Clients[]
+  etat                      TacheEtat     @default(NOK)
 }

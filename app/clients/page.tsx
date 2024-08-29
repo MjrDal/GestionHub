@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Card,
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
@@ -16,19 +17,29 @@ export default async function Clients() {
   return (
     <main className="">
       <div>
-        <Link href="/">
-          <Button>Retour</Button>
-        </Link>
+        <div>
+          <Link href="/">
+            <Button>Retour</Button>
+          </Link>
+        </div>
+        <div>
+          <Link href="/clients/new">
+            <Button>Nouveau</Button>
+          </Link>
+        </div>
       </div>
       <div className="grid grid-cols-4 gap-4 px-20 pt-4">
-        {clients.map((item) => (
-          <div key={item.id}>
-            <Link href={`/clients/${item.id}`}>
+        {clients.map((client) => (
+          <div key={client.id}>
+            <Link href={`/clients/${client.id}`}>
               <Card>
                 <CardHeader>
-                  <CardTitle>{item.companyName}</CardTitle>
-                  <CardDescription>{item.number}</CardDescription>
+                  <CardTitle>{client.code}</CardTitle>
+                  <CardDescription>{client.logo}</CardDescription>
                 </CardHeader>
+                <CardContent>
+                  <p>{client.companyName}</p>
+                </CardContent>
               </Card>
             </Link>
           </div>
