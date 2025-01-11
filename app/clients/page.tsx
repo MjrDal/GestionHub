@@ -15,8 +15,8 @@ export default async function Clients() {
   const prisma = new PrismaClient();
   const clients = await prisma.clients.findMany();
   return (
-    <main className="">
-      <div>
+    <main className=" p-2">
+      <div className="flex flex-row gap-2">
         <div>
           <Link href="/">
             <Button>Retour</Button>

@@ -14,6 +14,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { zodResolver } from "@hookform/resolvers/zod";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
 import { useForm } from "react-hook-form";
@@ -61,6 +62,11 @@ export const ClientsForm: React.FC<Props> = () => {
 
   return (
     <Form {...form}>
+      <div>
+        <Link href="/clients">
+          <Button>Retour</Button>
+        </Link>
+      </div>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 m-5">
         <FormField
           control={form.control}

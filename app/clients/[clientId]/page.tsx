@@ -1,3 +1,4 @@
+import { MenuClient } from "@/components/client/MenuClient";
 import { PageParams } from "@/components/types/next";
 import { Button } from "@/components/ui/button";
 import { PrismaClient } from "@prisma/client";
@@ -19,6 +20,9 @@ const RoutePage = async (
         <Button>Retour</Button>
       </Link>
       <div>{client?.companyName}</div>
+      <div>
+        <MenuClient client={client} />
+      </div>
     </div>
   );
 };
