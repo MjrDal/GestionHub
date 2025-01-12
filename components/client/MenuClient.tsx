@@ -1,5 +1,7 @@
 "use client";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
 
 interface Props {
@@ -16,6 +18,14 @@ interface Props {
     telephone: string;
     email: string;
     date: Date;
+    Devis: {
+      id: string;
+      number: string;
+      indice: string;
+      title: string;
+      designation: string;
+      status: string;
+    }[];
   } | null;
 }
 
@@ -81,7 +91,61 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
         );
       case "Devis":
         if (!client) return <div>Aucun client trpouvé</div>;
-        return <div>Voici vos devis en cours.</div>;
+        return (
+          <div className=" flex flex-row">
+            <ScrollArea>
+              <div>
+                {client.Devis.filter((item) => item.status === "EnCours")
+                  .length === 0 ? (
+                  <div>Pas de devis annulé</div>
+                ) : (
+                  client.Devis.filter((item) => item.status === "EnCours").map(
+                    (item) => (
+                      <div key={item.id}>
+                        {item.number} {item.indice}
+                        <Separator className="my-2" />
+                      </div>
+                    )
+                  )
+                )}
+              </div>
+            </ScrollArea>
+            <ScrollArea>
+              <div>
+                {client.Devis.filter((item) => item.status === "Accepter")
+                  .length === 0 ? (
+                  <div>Pas de devis annulé</div>
+                ) : (
+                  client.Devis.filter((item) => item.status === "Accepter").map(
+                    (item) => (
+                      <div key={item.id}>
+                        {item.number} {item.indice}
+                        <Separator className="my-2" />
+                      </div>
+                    )
+                  )
+                )}
+              </div>
+            </ScrollArea>
+            <ScrollArea>
+              <div>
+                {client.Devis.filter((item) => item.status === "Annuler")
+                  .length === 0 ? (
+                  <div>Pas de devis annulé</div>
+                ) : (
+                  client.Devis.filter((item) => item.status === "Annuler").map(
+                    (item) => (
+                      <div key={item.id}>
+                        {item.number} {item.indice}
+                        <Separator className="my-2" />
+                      </div>
+                    )
+                  )
+                )}
+              </div>
+            </ScrollArea>
+          </div>
+        );
       case "Projets":
         if (!client) return <div>Aucun client trpouvé</div>;
         return <div>Découvrez vos projets actifs.</div>;
@@ -109,7 +173,11 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
                 <li
                   key={item}
                   onClick={() => handleClick(item)}
-                  className="cursor-pointer hover:underline"
+                  className={`cursor-pointer ${
+                    selectedItem === item
+                      ? "text-white bg-[#A6A6A6]"
+                      : "text-black"
+                  }`}
                 >
                   {item}
                 </li>
@@ -118,7 +186,7 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
           </ul>
         </menu>
       </header>
-      <div className="mt-5 p-4 bg-[#A6A6A6]">{renderContent()}</div>
+      <div className="p-4 bg-[#A6A6A6]">{renderContent()}</div>
     </div>
   );
 };

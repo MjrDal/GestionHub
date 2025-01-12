@@ -12,6 +12,7 @@ const RoutePage = async (
   const prisma = new PrismaClient();
   const client = await prisma.clients.findUnique({
     where: { id: props.params.clientId },
+    include: { Devis: true },
   });
 
   return (
@@ -22,6 +23,11 @@ const RoutePage = async (
       <div>{client?.companyName}</div>
       <div>
         <MenuClient client={client} />
+      </div>
+      <div>
+        {client?.Devis.map((item) => (
+          <div key={item.id}>{item.status}</div>
+        ))}
       </div>
     </div>
   );
