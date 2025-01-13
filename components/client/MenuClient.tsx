@@ -97,7 +97,7 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
               <div>
                 {client.Devis.filter((item) => item.status === "EnCours")
                   .length === 0 ? (
-                  <div>Pas de devis annulé</div>
+                  <div>Pas de devis en cours</div>
                 ) : (
                   client.Devis.filter((item) => item.status === "EnCours").map(
                     (item) => (
@@ -114,7 +114,7 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
               <div>
                 {client.Devis.filter((item) => item.status === "Accepter")
                   .length === 0 ? (
-                  <div>Pas de devis annulé</div>
+                  <div>Pas de devis accepter</div>
                 ) : (
                   client.Devis.filter((item) => item.status === "Accepter").map(
                     (item) => (

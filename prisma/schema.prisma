@@ -24,6 +24,12 @@ enum TacheEtat {
   NOK
 }
 
+enum ProjectsTachesEtat {
+  AFaire
+  EnCours
+  Termine
+}
+
 model Clients {
   id                        String          @id @default(cuid())
   code                      String
@@ -65,10 +71,21 @@ model Devis {
 }
 
 model Projects {
-  id                        String        @id @default(cuid())  
+  id                        String        @id @default(cuid()) 
+  number                    String
+  indice                    String 
   name                      String
   designation               String
   client                    Clients[]
+  taches                    ProjetcsTaches[]
+}
+
+model ProjetcsTaches {
+  id                        String        @id @default(cuid())
+  title                     String
+  designation               String
+  project                   Projects[]
+  etat                      ProjectsTachesEtat     @default(AFaire)
 }
 
 model Factures {

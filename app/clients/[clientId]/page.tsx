@@ -24,11 +24,6 @@ const RoutePage = async (
       <div>
         <MenuClient client={client} />
       </div>
-      <div>
-        {client?.Devis.map((item) => (
-          <div key={item.id}>{item.status}</div>
-        ))}
-      </div>
     </div>
   );
 };
