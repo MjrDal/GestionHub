@@ -1,3 +1,5 @@
+"use client";
+
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
@@ -9,27 +11,34 @@ import {
 import { ScrollArea } from "@/components/ui/scroll-area";
 import Image from "next/image";
 
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
-);
+interface Props {
+  taches:
+    | {
+        id: string;
+        title: string;
+        designation: string;
+        etat: string;
+      }[]
+    | null;
+}
 
-export const Taches = async () => {
+export const Taches: React.FC<Props> = ({ taches }) => {
   return (
-    <article className=" bg-white w-[350px] h-[864px] px-6 rounded-md">
-      <div className=" flex flex-row justify-between">
-        <h2>Taches</h2>
+    <article className="bg-white w-[350px] h-[864px] px-6 rounded-md">
+      <div className="flex flex-row justify-between">
+        <h2>Tâches</h2>
         <Dialog>
           <DialogTrigger>
             <Image
               src={`/images/Plus.png`}
               width={15}
               height={15}
-              alt="logo du site"
+              alt="Ajouter une tâche"
             />
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Taches</DialogTitle>
+              <DialogTitle>Ajouter une tâche</DialogTitle>
             </DialogHeader>
           </DialogContent>
         </Dialog>
@@ -37,24 +46,19 @@ export const Taches = async () => {
       <div>
         <ScrollArea className="w-full h-[800px]">
           <div className="p-4">
-            {tags.map((tag) => (
-              <>
+            {!taches || taches.length === 0 ? ( // Vérification si `taches` est vide ou non défini
+              <div>Pas de tâche trouvée</div>
+            ) : (
+              taches.map((item, index) => (
                 <div
-                  key={tag}
+                  key={index} // La clé doit être unique
                   className="flex flex-row justify-between text-sm"
                 >
-                  <div className="grid gap-1.5 leading-none">
-                    <label
-                      htmlFor="terms1"
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {tag}
-                    </label>
-                  </div>
-                  <Checkbox id="terms1" />
+                  <Checkbox id={`terms-${index}`} />{" "}
+                  {/* Utilisation d'un ID unique */}
                 </div>
-              </>
-            ))}
+              ))
+            )}
           </div>
         </ScrollArea>
       </div>

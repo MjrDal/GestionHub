@@ -47,7 +47,6 @@ model Clients {
   Devis                     Devis[]
   projets                   Projects[]
   factures                  Factures[]
-  taches                    Taches[]
 }
 
 model Contacts {
@@ -101,6 +100,6 @@ model Taches {
   id                        String        @id @default(cuid())
   title                     String
   designation               String
-  client                    Clients[]
+  client                    String
   etat                      TacheEtat     @default(NOK)
 }

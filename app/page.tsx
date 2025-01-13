@@ -8,7 +8,7 @@ import { PrismaClient } from "@prisma/client";
 
 export default async function Home() {
   const prisma = new PrismaClient();
-  const clients = await prisma.clients.findMany();
+  const taches = await prisma.taches.findMany();
   return (
     <main className="bg-[#D9D9D9] p-8 flex flex-row justify-center gap-8 ">
       <div className="grid grid-cols-2 gap-4">
@@ -19,7 +19,7 @@ export default async function Home() {
       </div>
       <div className=" flex flex-row gap-4">
         <Projects />
-        <Taches />
+        <Taches taches={taches} />
       </div>
     </main>
   );
