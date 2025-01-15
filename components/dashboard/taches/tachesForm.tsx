@@ -23,7 +23,7 @@ import { TachesSchema } from "./tachesSchema";
 
 interface Props {}
 
-export const ClientsForm: React.FC<Props> = () => {
+export const TachesForm: React.FC<Props> = () => {
   const [isPending, startTransition] = useTransition();
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
@@ -33,17 +33,9 @@ export const ClientsForm: React.FC<Props> = () => {
   const form = useForm<z.infer<typeof TachesSchema>>({
     resolver: zodResolver(TachesSchema),
     defaultValues: {
-      code: "",
-      companyName: "",
-      companyDescription: "",
-      logo: "",
-      adresse: "",
-      postal: "",
-      city: "",
-      pays: "",
-      telephone: "",
-      email: "",
-      date: date,
+      title: "",
+      designation: "",
+      client: "",
     },
   });
 
@@ -64,10 +56,10 @@ export const ClientsForm: React.FC<Props> = () => {
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 m-5">
         <FormField
           control={form.control}
-          name="code"
+          name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Code</FormLabel>
+              <FormLabel>title</FormLabel>
               <FormControl>
                 <Input placeholder="name" {...field} disabled={isPending} />
               </FormControl>
@@ -77,10 +69,10 @@ export const ClientsForm: React.FC<Props> = () => {
         />
         <FormField
           control={form.control}
-          name="companyName"
+          name="client"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nom</FormLabel>
+              <FormLabel>client</FormLabel>
               <FormControl>
                 <Input placeholder="name" {...field} disabled={isPending} />
               </FormControl>
@@ -90,7 +82,7 @@ export const ClientsForm: React.FC<Props> = () => {
         />
         <FormField
           control={form.control}
-          name="companyDescription"
+          name="designation"
           render={({ field }) => (
             <FormItem>
               <FormLabel>Description</FormLabel>
