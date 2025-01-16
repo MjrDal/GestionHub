@@ -100,6 +100,6 @@ model Taches {
   id                        String        @id @default(cuid())
   title                     String
   designation               String
-  client                    String?
+  client                    String
   etat                      TacheEtat     @default(NOK)
 }

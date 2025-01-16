@@ -59,9 +59,9 @@ export const TachesForm: React.FC<Props> = () => {
           name="title"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>title</FormLabel>
+              <FormLabel>Titre</FormLabel>
               <FormControl>
-                <Input placeholder="name" {...field} disabled={isPending} />
+                <Input placeholder="titre" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -74,7 +74,7 @@ export const TachesForm: React.FC<Props> = () => {
             <FormItem>
               <FormLabel>client</FormLabel>
               <FormControl>
-                <Input placeholder="name" {...field} disabled={isPending} />
+                <Input placeholder="client" {...field} disabled={isPending} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -88,7 +88,7 @@ export const TachesForm: React.FC<Props> = () => {
               <FormLabel>Description</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="dialogue"
+                  placeholder="description"
                   className="resize-none"
                   {...field}
                 />
