@@ -29,21 +29,25 @@ export default async function Clients() {
         </div>
       </div>
       <div className="grid grid-cols-4 gap-4 px-20 pt-4">
-        {clients.map((client) => (
-          <div key={client.id}>
-            <Link href={`/clients/${client.id}`}>
-              <Card>
-                <CardHeader>
-                  <CardTitle>{client.code}</CardTitle>
-                  <CardDescription>{client.logo}</CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p>{client.companyName}</p>
-                </CardContent>
-              </Card>
-            </Link>
-          </div>
-        ))}
+        {!clients || clients.length === 0 ? (
+          <div>Pas de clients à affiché</div>
+        ) : (
+          clients.map((client) => (
+            <div key={client.id}>
+              <Link href={`/clients/${client.id}`}>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>{client.code}</CardTitle>
+                    <CardDescription>{client.logo}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p>{client.companyName}</p>
+                  </CardContent>
+                </Card>
+              </Link>
+            </div>
+          ))
+        )}
       </div>
     </main>
   );

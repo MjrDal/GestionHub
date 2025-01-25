@@ -3,6 +3,10 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { useState } from "react";
+import {
+  DropDownMenuDevisLeft,
+  DropDownMenuDevisRight,
+} from "../devis/dropDownMenuDevis";
 
 interface Props {
   client: {
@@ -102,7 +106,15 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
                   client.Devis.filter((item) => item.status === "EnCours").map(
                     (item) => (
                       <div key={item.id}>
-                        {item.number} {item.indice}
+                        <div className=" flex flex-row items-center gap-2">
+                          <div>
+                            {item.number} {item.indice}
+                          </div>
+                          <div>
+                            <DropDownMenuDevisRight id={item.id} />
+                          </div>
+                        </div>
+
                         <Separator className="my-2" />
                       </div>
                     )
@@ -119,7 +131,18 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
                   client.Devis.filter((item) => item.status === "Accepter").map(
                     (item) => (
                       <div key={item.id}>
-                        {item.number} {item.indice}
+                        <div className=" flex flex-row items-center gap-2">
+                          <div>
+                            <DropDownMenuDevisLeft id={item.id} />
+                          </div>
+                          <div>
+                            {item.number} {item.indice}
+                          </div>
+                          <div>
+                            <DropDownMenuDevisRight id={item.id} />
+                          </div>
+                        </div>
+
                         <Separator className="my-2" />
                       </div>
                     )
@@ -136,7 +159,15 @@ export const MenuClient: React.FC<Props> = ({ client }) => {
                   client.Devis.filter((item) => item.status === "Annuler").map(
                     (item) => (
                       <div key={item.id}>
-                        {item.number} {item.indice}
+                        <div>
+                          <div>
+                            <DropDownMenuDevisLeft id={item.id} />
+                          </div>
+                          <div>
+                            {item.number} {item.indice}
+                          </div>
+                        </div>
+
                         <Separator className="my-2" />
                       </div>
                     )

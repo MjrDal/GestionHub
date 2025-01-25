@@ -60,8 +60,11 @@ export const Taches: React.FC<Props> = ({ taches }) => {
                   key={index} // La clé doit être unique
                   className="flex flex-row justify-between text-sm"
                 >
+                  <div>
+                    <p>{item.title}</p>
+                    <p>{item.designation}</p>
+                  </div>
                   <Checkbox id={`terms-${index}`} />{" "}
-                  {/* Utilisation d'un ID unique */}
                 </div>
               ))
             )}

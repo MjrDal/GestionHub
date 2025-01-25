@@ -17,6 +17,7 @@ enum StatusDevis {
   Accepter
   Annuler
   EnCours
+  Archive
 }
 
 enum TacheEtat {
